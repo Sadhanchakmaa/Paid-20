@@ -523,8 +523,8 @@ def get_flag_info_html(num_or_iso):
 
 def mask_number(num):
     clean = num.replace("+", "").replace(" ", "")
-    if len(clean) > 6: return f"{clean[:3]}❖𝐏𝐑𝐈𝐌𝐄❖{clean[-3:]}"
-    elif len(clean) > 2: return f"{clean[:1]}❖𝐏𝐑𝐈𝐌𝐄❖{clean[-1:]}"
+    if len(clean) > 6: return f"{clean[:3]}❖ᴏᴛᴩ❖{clean[-3:]}"
+    elif len(clean) > 2: return f"{clean[:1]}❖ᴏᴛᴩ❖{clean[-1:]}"
     return clean
 
 # ==========================================
