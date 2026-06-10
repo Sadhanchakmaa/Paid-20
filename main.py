@@ -23,7 +23,7 @@ load_dotenv()
 # ==========================================
 # Configuration (Token & Owner ID)
 # ========================================
-TOKEN = "8868888185:AAE07GbUMzGBSt2l3c-y3BEAwXfuVVV8w_g"
+TOKEN = os.getenv("BOT_TOKEN")
 BASE_URL = f"https://api.telegram.org/bot{TOKEN}"
 FILE_URL = f"https://api.telegram.org/file/bot{TOKEN}/"
 
