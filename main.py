@@ -105,33 +105,23 @@ DEFAULT_CUSTOM_MESSAGES = {
 # Firebase Setup (Railway Compatible)
 # ==========================================
 
-firebase_credentials_json = r"""
-{
-  "type": "service_account",
-  "project_id": "jihan-94417",
-  "private_key_id": "860b364508a1a63ff8f5a4a54600a111de983043",
-  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDtMJVaANmPd31B\nhzfHDsN01wE3Hc67dj8yKK7G0NGt4+FmnXMIZfAtxXhdr2N95u6ZbWedo05wWsq9\nF68N4p2hFIUWFIfeXxk/tfa+sZC1uit1eZm8X0t014fXmJHeyG0XUAUrlXoJXUIO\n0e6RmXtgfYAQW/NaZV2F4RXE+pSJjxLPUMzPEIjlmlH3wxr8PJ1rWTOTW5+A+tFk\nXrZylh2H8tVvZ/7Rsbs/NnOTZM1+fmCZ6uqCci1qcQChQxWc0hWQJijTxlZ5V9iD\noHqCoJcU+W2DO8icpK1TO2neV8QNrs3zwP6PmYkOtSnNbu/JOvVEZFlAweUyfu94\nuOyA/2T3AgMBAAECggEAAU/EQ6i/JNZZ6ioMdByJlo42nE6dFtd8jSza0Pah2JhR\nMsQQ7GCQuqNEGyCEW4asL+UCLnj5ghC+dkIFq2OWNsHQsPwqepK3QDojw/Vim3hA\nE6vS3pvLfjkcfMpQypT8WKV0od0Q8H3quf8Nlqu5zVRkVOYG3nhMObIY8LhOzsPp\n2QjKPDeXk3o7xpvTnGgt+DXYFo+GWR+MQg3x7q9spoxg3jlAIz1qet9DNWsusybk\nttn8SWgTjVFvLZq2U1PPBLYqeUW7FYZL0puq04ZfLI35NG/6CJCFCfEnFXRloyEB\n8nqD73xjyh9mIEqevWFGeTtCMMsOz98/tPcgs4nIwQKBgQD4F9iZnvt/9kaaaf2u\nL9+g5c3ws6HGdd540ZRmGmkgbXKUMCCm8n2xaiGKqyXi/1JbfgHIVHsy9+EUday/\nBQBn3V4xWPzrfw4zGTfcAONd7v10fwA/xywxzyr/hNJFoL+nhtMq9nNJaUID4uj0\njxzyKMG3+8807EFEQJHQ3KTyXwKBgQD0v8dEj21XA4X5pKgqg5xL7ahvzDhbsZzI\ndz0K9FIw1NROGi3wrGAIf6XObi+S8wbRA/a9c8iGvignnztnPHUJchX2vwWiUglm\nnRCTxmcdFepXYlacOxWVd8da8efmviOC5zvNqd+OHmTYJeYr09HS/0kvFAfggB9z\nHvr7PgGEaQKBgQCLSgAfB+aWSnQLX/TApjo9AKjmOkRaw3Sbirdxt+RMA4bv8jFy\n6fRt9nNMgpir4MOhgJaJnfzpechSD1tkh+9ZYSzwMdEWeuhDAiadi5Yb+AEvNdqy\n9CU49eJjQXQ5CW5xJT5MAcBqeAFLY0t9exg6UW2p2WPVh8uBAWucwzSMqwKBgQCi\ns6bVdf9629XBimtcr9dERn41q+4/TohqX5IN6TOGUMW+Efs+Rmkk3S6tV2R67OI4\nKslpUkIZCOqKxHjp/S/Ukqn1OTGWobCsLXeqtTcxB7OcWbw36bNEhLbbR3shUn8q\n82s3IlmCEcR6SF+F/S88dAcDq+48mQ/PKOYyBRtfGQKBgGpHCAoo4IVSbzp97OhN\n0uRbzJtv1Id9bIRlBIAB8RHbh0Asq/bbQA3cXe/lh6ZVSzC9bnKGYsRw0OcFvrBf\npNom31ifDHOKNQB99aDHpfDVta6nQ0WzXRBalGQnPE7Ov8wO+sKuPAR+is7pZpzf\neUgSpb08G0Eyc6fmpk+XNJDp\n-----END PRIVATE KEY-----\n",
-  "client_email": "firebase-adminsdk-fbsvc@jihan-94417.iam.gserviceaccount.com",
-  "client_id": "101161432994892168209",
-  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-  "token_uri": "https://oauth2.googleapis.com/token",
-  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-fbsvc%40jihan-94417.iam.gserviceaccount.com",
-  "universe_domain": "googleapis.com"
-}
+db = None
 
+# Railway তে Environment Variable এ JSON স্ট্রিং সেট করুন
+firebase_creds_json = os.getenv("FIREBASE_CREDENTIALS")
 
-"""
-
-try:
-    cred_dict = json.loads(firebase_credentials_json)
-    cred = credentials.Certificate(cred_dict)
-    firebase_admin.initialize_app(cred)
-    db = firestore.client()
-    print("✅ Firebase Connected! (Full Sync Enabled)")
-except Exception as e:
-    print(f"❌ Firebase Error: {e}")
-    db = None
+if firebase_creds_json:
+    try:
+        # JSON স্ট্রিং কে ডিকশনারিতে কনভার্ট করুন
+        cred_dict = json.loads(firebase_creds_json)
+        cred = credentials.Certificate(cred_dict)
+        firebase_admin.initialize_app(cred)
+        db = firestore.client()
+        print("✅ Firebase Connected from ENV!")
+    except Exception as e:
+        print(f"❌ Firebase Error: {e}")
+else:
+    print("⚠️ No Firebase credentials found. Running without database.")
 
 bot_settings = {
     "admins": [OWNER_ID],
