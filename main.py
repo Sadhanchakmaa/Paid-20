@@ -23,11 +23,11 @@ load_dotenv()
 # ==========================================
 # Configuration (Token & Owner ID)
 # ========================================
-TOKEN = "8868888185:AAHi569sE2smEwbPNCIZY5MqZ8w9vP6nfwo"       #YOUR BOT TOKEN HERE
+TOKEN = "8683386539:AAHRaDq8JYxISRyUNsYhy3lxYsEKhnF_5_M"       #YOUR BOT TOKEN HERE
 BASE_URL = f"https://api.telegram.org/bot{TOKEN}"
 FILE_URL = f"https://api.telegram.org/file/bot{TOKEN}/"
 
-OWNER_ID = 8748650848
+OWNER_ID = 1919672730
 BOT_USERNAME = ""
 DB_FILE = "bot_data.json"
 
