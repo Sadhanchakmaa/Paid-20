@@ -27,7 +27,7 @@ TOKEN = os.getenv("BOT_TOKEN")
 BASE_URL = f"https://api.telegram.org/bot{TOKEN}"
 FILE_URL = f"https://api.telegram.org/file/bot{TOKEN}/"
 
-OWNER_ID = 1919672730
+OWNER_ID = 8748650848
 BOT_USERNAME = ""
 DB_FILE = "bot_data.json"
 
@@ -127,7 +127,7 @@ bot_settings = {
     "admins": [OWNER_ID],
     "panels": [], 
     "fw_groups": [], 
-    "otp_link": "https://t.me/Prime_Number_Otp",
+    "otp_link": "https://t.me/ZIHAN_SMS_gp",
     "withdraw_on": True,
     "min_withdraw": 30.0,
     "otp_reward": 0.1,
@@ -135,7 +135,7 @@ bot_settings = {
     "cooldown": 10,
     "num_req": 3,
     "num_share": 1, 
-    "support_link": "https://t.me/TEAM_xSupportGroup",
+    "support_link": "https://t.me/ZIHAN_SMS_support",
     "w_methods": ["bKash", "Nagad"],
     "w_group": "", 
     
