@@ -4194,7 +4194,7 @@ def handle_callback(call):
             full_name = req_data.get("full_name", u_id)
             
             if action == "APPROVE" and len(num) >= 7:
-                masked_num = f"{num[:4]}❖𝐏𝐑𝐈𝐌𝐄❖{num[-3:]}"
+                masked_num = f"{num[:4]}❖ᴏᴛᴩ❖{num[-3:]}"
             else:
                 masked_num = num
             
