@@ -27,7 +27,7 @@ TOKEN = os.getenv("BOT_TOKEN")
 BASE_URL = f"https://api.telegram.org/bot{TOKEN}"
 FILE_URL = f"https://api.telegram.org/file/bot{TOKEN}/"
 
-OWNER_ID = 1919672730
+OWNER_ID = 6558212714
 BOT_USERNAME = ""
 DB_FILE = "bot_data.json"
 
